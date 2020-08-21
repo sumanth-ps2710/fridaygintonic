@@ -36,6 +36,11 @@ kind: Deployment
 metadata:
   name: {{.Values.name}}-deployment
 spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   replicas: {{int .Values.replicas}}
   selector:
     matchLabels:
